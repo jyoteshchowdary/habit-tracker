@@ -62,23 +62,7 @@ export default function Dashboard() {
 
           if (logs && logs.length > 0) {
             lastLogged = logs[0].logged_date
-
-            // Count consecutive days
-            const today = new Date()
-            let currentDate = new Date(today)
-            currentDate.setHours(0, 0, 0, 0)
-
-            for (const log of logs) {
-              const logDate = new Date(log.logged_date)
-              logDate.setHours(0, 0, 0, 0)
-
-              if (logDate.getTime() === currentDate.getTime()) {
-                streak++
-                currentDate.setDate(currentDate.getDate() - 1)
-              } else {
-                break
-              }
-            }
+            streak = logs.length // Simple: count total logs as streak
           }
 
           return { ...habit, streak, lastLogged }
