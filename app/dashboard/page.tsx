@@ -112,7 +112,11 @@ export default function Dashboard() {
       ])
 
       if (error) throw error
-      if (userId) fetchHabits(userId)
+      
+      // Refresh habits immediately
+      setTimeout(() => {
+        if (userId) fetchHabits(userId)
+      }, 500)
     } catch (err) {
       console.error(err)
     }
