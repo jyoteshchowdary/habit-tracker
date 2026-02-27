@@ -124,30 +124,37 @@ export default function FriendsPage() {
     try {
       if (isFollowing) {
         // Unfollow
-        await supabase
+        const { error } = await supabase
           .from('friendships')
           .delete()
           .eq('follower_id', userId)
           .eq('following_id', followingId)
+        
+        if (error) throw error
       } else {
         // Follow
-        await supabase.from('friendships').insert([
+        const { error } = await supabase.from('friendships').insert([
           {
             follower_id: userId,
             following_id: followingId,
           },
         ])
+        
+        if (error) throw error
       }
 
       // Refresh
       fetchFriends(userId)
       fetchAllUsers(userId)
     } catch (err) {
-      console.error(err)
+      console.error('Follow error:', err)
+      alert('Error: ' + (err as any).message)
     }
   }
 
   if (loading) return <div className="p-4">Loading...</div>
+
+  if (!mounted) return null
 
   return (
     <div className="min-h-screen bg-gray-50">

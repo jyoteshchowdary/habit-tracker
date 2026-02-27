@@ -131,14 +131,20 @@ export default function Dashboard() {
   if (loading) return <div className="p-4">Loading...</div>
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="max-w-2xl mx-auto p-4">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">My Habits</h1>
           <div className="space-x-4">
             <Link
+              href="/leaderboard"
+              className="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 inline-block transition-colors"
+            >
+              🏆 Leaderboard
+            </Link>
+            <Link
               href="/friends"
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 inline-block"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 inline-block transition-colors"
             >
               Friends
             </Link>
@@ -152,8 +158,8 @@ export default function Dashboard() {
         </div>
 
         {/* Create habit form */}
-        <form onSubmit={createHabit} className="bg-white p-6 rounded-lg shadow mb-6">
-          <h2 className="text-xl font-bold mb-4 text-gray-900">Create New Habit</h2>
+        <form onSubmit={createHabit} className="bg-white p-6 rounded-lg shadow-lg mb-6 border-2 border-blue-200">
+          <h2 className="text-xl font-bold mb-4 text-gray-900">✨ Create New Habit</h2>
           <input
             type="text"
             placeholder="Habit name (e.g., Morning Run)"
@@ -170,7 +176,7 @@ export default function Dashboard() {
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all font-semibold"
           >
             Create Habit
           </button>
@@ -179,7 +185,7 @@ export default function Dashboard() {
         {/* Habits list */}
         <div className="space-y-4">
           {habits.map((habit) => (
-            <div key={habit.id} className="bg-white p-6 rounded-lg shadow">
+            <div key={habit.id} className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-shadow">
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">{habit.name}</h3>
@@ -193,9 +199,9 @@ export default function Dashboard() {
 
               <button
                 onClick={() => logHabit(habit.id)}
-                className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600"
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-lg hover:from-green-600 hover:to-green-700 transition-all font-semibold text-lg"
               >
-                Log Today
+                ✓ Log Today
               </button>
             </div>
           ))}
