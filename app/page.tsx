@@ -1,28 +1,17 @@
-'use client'
+import { redirect } from 'next/navigation'
+import { createClient } from '@supabase/supabase-js'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
-export default function Home() {
-  const router = useRouter()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    const checkAuth = async () => {
-      const { data } = await supabase.auth.getSession()
-      if (data.session) {
-        router.push('/dashboard')
-      } else {
-        router.push('/auth')
-      }
-    }
-
-    checkAuth()
-  }, [router])
-
-  if (!mounted) return null
-
-  return <div>Redirecting...</div>
+export default async function Home() {
+  const { data } = await supabase.auth.getSession()
+  
+  if (data.session) {
+    redirect('/dashboard')
+  } else {
+    redirect('/auth')
+  }
 }
