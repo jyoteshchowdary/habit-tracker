@@ -145,7 +145,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-2xl mx-auto p-4">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">My Habits</h1>
+          <h1 className="text-3xl font-bold text-gray-900">My Habits</h1>
           <button
             onClick={logout}
             className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
@@ -156,20 +156,20 @@ export default function Dashboard() {
 
         {/* Create habit form */}
         <form onSubmit={createHabit} className="bg-white p-6 rounded-lg shadow mb-6">
-          <h2 className="text-xl font-bold mb-4">Create New Habit</h2>
+          <h2 className="text-xl font-bold mb-4 text-gray-900">Create New Habit</h2>
           <input
             type="text"
             placeholder="Habit name (e.g., Morning Run)"
             value={newHabitName}
             onChange={(e) => setNewHabitName(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 placeholder-gray-500"
           />
           <input
             type="text"
             placeholder="Description (optional)"
             value={newHabitDesc}
             onChange={(e) => setNewHabitDesc(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 placeholder-gray-500"
           />
           <button
             type="submit"
@@ -185,7 +185,7 @@ export default function Dashboard() {
             <div key={habit.id} className="bg-white p-6 rounded-lg shadow">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-xl font-bold">{habit.name}</h3>
+                  <h3 className="text-xl font-bold text-gray-900">{habit.name}</h3>
                   {habit.description && <p className="text-gray-600">{habit.description}</p>}
                 </div>
                 <div className="text-right">
@@ -205,7 +205,7 @@ export default function Dashboard() {
         </div>
 
         {habits.length === 0 && (
-          <p className="text-center text-gray-500 mt-8">No habits yet. Create one above!</p>
+          <p className="text-center text-gray-600 mt-8">No habits yet. Create one above!</p>
         )}
       </div>
     </div>
