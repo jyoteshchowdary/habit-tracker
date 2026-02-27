@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 interface Habit {
   id: string
@@ -134,12 +135,20 @@ export default function Dashboard() {
       <div className="max-w-2xl mx-auto p-4">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">My Habits</h1>
-          <button
-            onClick={logout}
-            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-          >
-            Logout
-          </button>
+          <div className="space-x-4">
+            <Link
+              href="/friends"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 inline-block"
+            >
+              Friends
+            </Link>
+            <button
+              onClick={logout}
+              className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         {/* Create habit form */}
